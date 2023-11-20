@@ -36,7 +36,7 @@ jobs:
             --region ${{ env.AWS_REGION }} \
             ${{ env.SOURCE_DIST }} s3://${{ env.AWS_S3_BUCKET }} \
             --delete
-        working-directory: ${{ env.SOURCE_DIST }}
+        working-directory: ./${{ env.SOURCE_DIST }}
 
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
