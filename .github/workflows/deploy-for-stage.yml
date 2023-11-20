@@ -6,9 +6,9 @@ on:
       - main
 
 env:
-  SOURCE_DIST: build
+  BUILD_DIST: build
   AWS_REGION: ap-northeast-2
-  AWS_S3_BUCKET: react-cicd-sample
+#  AWS_S3_BUCKET: react-cicd-sample
 #  AWS_CLOUDFRONT_ID: ${{ secrets.AWS_CLOUDFRONT_ID }}
 #  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
 #  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -34,7 +34,7 @@ jobs:
         run: |
           aws s3 sync \
             --region ${{ env.AWS_REGION }} \
-            ${{ env.SOURCE_DIST }} s3://${{ env.AWS_S3_BUCKET }} \
+            ${{ env.BUILD_DIST }} s3://${{ secrets.AWS_S3_BUCKET }} \
             --delete
 
       - name: Invalidate CloudFront
